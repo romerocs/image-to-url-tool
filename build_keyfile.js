@@ -39,3 +39,14 @@ const storeData = (data, path) => {
 };
 
 storeData(data, path);
+
+const loadData = path => {
+  try {
+    return fs.readFileSync(path, 'utf8');
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+};
+
+console.log(loadData(path));
