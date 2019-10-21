@@ -13,7 +13,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./index.js"
+    "start": "nodemon ./index.js",
+    "keyfile": "node build_keyfile.js"
   },
   "author": "",
   "license": "ISC"

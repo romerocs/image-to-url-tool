@@ -1,4 +1,5 @@
 require('dotenv').config();
+const fs = require('fs');
 
 const {
   GCLOUD_KEY_FILE_TYPE,
@@ -13,7 +14,7 @@ const {
   GCLOUD_KEY_FILE_PRIVATE_KEY
 } = process.env;
 
-module.exports = {
+const data = {
   type: GCLOUD_KEY_FILE_TYPE,
   project_id: GCLOUD_KEY_FILE_PROJECT_ID,
   private_key_id: GCLOUD_KEY_FILE_PRIVATE_ID,
@@ -25,3 +26,15 @@ module.exports = {
   auth_provider_x509_cert_url: GCLOUD_KEY_FILE_AUTH_PROVIDER_CERT_URL,
   client_x509_cert_url: GCLOUD_KEY_FILE_CLIENT_CERT_URL
 };
+
+const path = './keyfile.json';
+
+const storeData = (data, path) => {
+  try {
+    fs.writeFileSync(path, JSON.stringify(data));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+storeData(data, path);
