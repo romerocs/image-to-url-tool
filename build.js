@@ -6,4 +6,4 @@ buildKeyFile('npm', ['run keyfile'], {
   shell: true
 });
 
-startServer('npm', ['start'], { stdio: 'inherit', shell: true });
+//startServer('npm', ['start'], { stdio: 'inherit', shell: true });
