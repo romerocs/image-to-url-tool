@@ -32,6 +32,7 @@ const path = './keyfile.json';
 const storeData = (data, path) => {
   try {
     fs.writeFileSync(path, JSON.stringify(data));
+    console.log('wrote the file!');
   } catch (err) {
     console.error(err);
   }
