@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@google-cloud/storage": "^4.0.0",
+    "aws-sdk": "^2.553.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "multer": "^1.4.2",
@@ -13,7 +14,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node build_keyfile.js && nodemon ./index.js"
+    "start": "nodemon ./index.js"
   },
   "author": "",
   "license": "ISC"

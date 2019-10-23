@@ -1,11 +1,28 @@
 require('dotenv').config();
+
+process.env.AWS_ACCESS_KEY_ID = process.env.BUCKETEER_AWS_ACCESS_KEY_ID;
+process.env.AWS_SECRET_ACCESS_KEY = process.env.BUCKETEER_AWS_SECRET_ACCESS_KEY;
+process.env.AWS_REGION = 'us-east-1';
+
+const AWS = require('aws-sdk');
+const s3 = new AWS.S3();
 const multer = require('multer');
 const memoryStorage = multer.memoryStorage;
 const express = require('express');
 const { Storage } = require('@google-cloud/storage');
 const path = require('path');
 
-// Instantiate a storage client
+var params = {
+  Bucket: process.env.BUCKETEER_BUCKET_NAME,
+  Key: 'keyfile.json'
+};
+
+const file = require('fs').createWriteStream('./keyfile.json');
+s3.getObject(params)
+  .createReadStream()
+  .pipe(file);
+
+//Instantiate a storage client
 const googleCloudStorage = new Storage({
   projectId: process.env.GCLOUD_STORAGE_BUCKET,
   keyFilename: process.env.GCLOUD_KEY_FILE
@@ -14,8 +31,7 @@ const googleCloudStorage = new Storage({
 // Instantiate an express server
 const app = express();
 
-// Multer is required to process file uploads and make them available via
-// req.files.
+//Multer is required to process file uploads and make them available via req.files.
 const m = multer({
   storage: memoryStorage(),
   limits: {
